@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,6 +31,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.cequea.transferme.R
 import com.cequea.transferme.ui.components.TransferMeButton
+import com.cequea.transferme.ui.navigation.AppScreens
 import com.cequea.transferme.ui.theme.TransferMeTheme
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
@@ -45,7 +45,10 @@ fun WelcomeRoot(
 
     WelcomeScreen(
         state = state,
-        onAction = viewModel::onAction
+        onAction = viewModel::onAction,
+        onNavigateToLogin = {
+            navController.navigate(AppScreens.LoginScreen)
+        }
     )
 }
 
@@ -53,13 +56,15 @@ fun WelcomeRoot(
 fun WelcomeScreen(
     state: WelcomeState,
     onAction: (WelcomeAction) -> Unit,
+    onNavigateToLogin: () -> Unit
 ) {
-    WelcomeScreenItem(state)
+    WelcomeScreenItem(state, onNavigateToLogin)
 }
 
 @Composable
 private fun WelcomeScreenItem(
     state: WelcomeState,
+    onNavigateToLogin: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val pagerState = rememberPagerState(pageCount = { state.items.size })
@@ -112,8 +117,12 @@ private fun WelcomeScreenItem(
             modifier = Modifier.padding(top = 16.dp),
             onClick = {
                 scope.launch {
-                    val nextPage = (pagerState.currentPage + 1) % state.items.size
-                    pagerState.animateScrollToPage(nextPage)
+                    if (pagerState.currentPage + 1 == state.items.size){
+                        onNavigateToLogin()
+                    } else {
+                        val nextPage = (pagerState.currentPage + 1) % state.items.size
+                        pagerState.animateScrollToPage(nextPage)
+                    }
                 }
             },
             text = "Continue"
@@ -143,9 +152,6 @@ private fun WelcomeScreenItem(
             }
         }
     }
-
-
-    // Indicator
 }
 
 
@@ -173,7 +179,8 @@ private fun Preview() {
                     )
                 )
             ),
-            onAction = {}
+            onAction = {},
+            onNavigateToLogin = {}
         )
     }
 }
