@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,7 +28,7 @@ fun TransferMeMultilineTextField(
         modifier = modifier
             .fillMaxWidth()
             .background(
-                color = Color(0XFF0166FF).copy(alpha = 0.1f),
+                color = Color(0XFF0166FF).copy(alpha = 0.05f),
                 shape = RoundedCornerShape(10.dp)
             )
             .padding(12.dp)
@@ -35,7 +36,12 @@ fun TransferMeMultilineTextField(
         BasicTextField(
             value = value,
             onValueChange = onValueChange,
-            modifier = Modifier.fillMaxWidth().heightIn(min = 200.dp, max = 600.dp),
+            textStyle = TextStyle.Default.copy(
+                color = Color(0xFF5164BF)
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(min = 200.dp, max = 600.dp),
             decorationBox = { innerTextField ->
                 if (value.isEmpty()) {
                     Text(

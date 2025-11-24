@@ -23,7 +23,7 @@ class WelcomeViewModel : ViewModel() {
         }
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000L),
+            started = SharingStarted.WhileSubscribed(5000L),
             initialValue = WelcomeState()
         )
 
