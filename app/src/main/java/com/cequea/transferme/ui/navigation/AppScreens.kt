@@ -42,6 +42,9 @@ sealed class AppScreens : Screen {
     @Serializable
     data object AddCardScreen: AppScreens()
 
+    @Serializable
+    data object StaticsScreen: AppScreens()
+
     companion object {
         fun showBottomBar(currentRoute: String): Boolean {
             fun routeOf(screen: AppScreens): String = screen::class.qualifiedName ?: ""
@@ -52,8 +55,19 @@ sealed class AppScreens : Screen {
                 routeOf(ProfileScreen),
                 routeOf(ChartScreen),
                 routeOf(CardDetails),
+                routeOf(StaticsScreen),
             )
             return showScreens.contains(currentRoute)
+        }
+
+        fun enableDrawerGestures(currentRoute: String): Boolean {
+            fun routeOf(screen: AppScreens): String = screen::class.qualifiedName ?: ""
+
+            val hideScreens = listOf(
+                routeOf(WelcomeScreen),
+                routeOf(LoginScreen),
+            )
+            return !hideScreens.contains(currentRoute)
         }
     }
 }

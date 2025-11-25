@@ -84,8 +84,7 @@ private fun AppNavigationScreen(
                     NavHost(
                         modifier = Modifier.padding(bottom = if (state.showBottomBar) 80.dp else 0.dp),
                         navController = navController,
-                        startDestination = AppScreens.HomeScreen
-//                    startDestination = AppScreens.WelcomeScreen
+                        startDestination = AppScreens.WelcomeScreen
                     ) {
                         composable<AppScreens.WelcomeScreen> {
                             WelcomeRoot(navController = navController)
@@ -169,6 +168,10 @@ private fun AppNavigationScreen(
 
                         composable<AppScreens.ProfileScreen> {
                             ProfileRoot(navController = navController)
+                        }
+
+                        composable<AppScreens.StaticsScreen> {
+                            StaticsRoot(navController = navController)
                         }
 
                         composable<AppScreens.SuccessTransactionScreen> { backStackEntry ->

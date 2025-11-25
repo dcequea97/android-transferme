@@ -6,6 +6,7 @@ import com.cequea.transferme.ui.screens.home.HomeViewModel
 import com.cequea.transferme.ui.screens.login.LoginViewModel
 import com.cequea.transferme.ui.screens.profile.ProfileViewModel
 import com.cequea.transferme.ui.screens.settings.SettingsViewModel
+import com.cequea.transferme.ui.screens.statics.StaticsViewModel
 import com.cequea.transferme.ui.screens.transfer.TransferViewModel
 import com.cequea.transferme.ui.screens.wallet.MyWalletViewModel
 import com.cequea.transferme.ui.screens.welcome.WelcomeViewModel
@@ -22,4 +23,5 @@ val appModule = module {
     viewModel { TransferViewModel() }
     viewModel { ProfileViewModel() }
     viewModel { SettingsViewModel() }
+    viewModel { StaticsViewModel() }
 }

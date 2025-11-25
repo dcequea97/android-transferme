@@ -49,6 +49,7 @@ import com.cequea.transferme.ui.components.TransferMeButton
 import com.cequea.transferme.ui.components.TransferMeMultilineTextField
 import com.cequea.transferme.ui.components.TransferMeSimpleHeader
 import com.cequea.transferme.ui.components.UnderlinedTextField
+import com.cequea.transferme.ui.navigation.AppScreens
 import com.cequea.transferme.ui.theme.TransferMeColors
 import com.cequea.transferme.ui.theme.TransferMeTheme
 
@@ -61,7 +62,10 @@ fun LoginRoot(
 
     LoginScreen(
         state = state,
-        onAction = viewModel::onAction
+        onAction = viewModel::onAction,
+        onLoginClicked = {
+            navController.navigate(AppScreens.HomeScreen)
+        }
     )
 }
 
@@ -69,25 +73,26 @@ fun LoginRoot(
 fun LoginScreen(
     state: LoginState,
     onAction: (LoginAction) -> Unit,
+    onLoginClicked: () -> Unit
 ) {
     Crossfade(targetState = state.activeScreen, animationSpec = tween(250)) { screen ->
         Box(modifier = Modifier.padding(horizontal = 32.dp)) {
             when (screen) {
-                LoginScreens.Login ->       Login(onAction)
+                LoginScreens.Login ->       Login(onAction, onLoginClicked)
                 LoginScreens.SignUp ->      SignUp(onAction)
                 LoginScreens.Profile ->     Profile(onAction)
                 LoginScreens.PhoneNumber -> PhoneNumber(onAction)
                 LoginScreens.SecurityQuestions ->
                     SecurityQuestions(onAction)
                 LoginScreens.PinCode ->
-                    PinCode(onAction, state)
+                    PinCode(onAction, state, onLoginClicked)
             }
         }
     }
 }
 
 @Composable
-private fun PinCode(onAction: (LoginAction) -> Unit, state: LoginState) {
+private fun PinCode(onAction: (LoginAction) -> Unit, state: LoginState, onLoginClicked: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -136,7 +141,7 @@ private fun PinCode(onAction: (LoginAction) -> Unit, state: LoginState) {
             modifier = Modifier.align(Alignment.CenterHorizontally),
             onClick = {
                 onAction(LoginAction.SetPinCodeTextHeader(LoginPinCodeType.Set))
-                onAction(LoginAction.OnLoginScreenChanged(LoginScreens.PinCode))
+                onLoginClicked()
             },
             text = "Go"
         )
@@ -370,7 +375,10 @@ private fun SignUp(onAction: (LoginAction) -> Unit) {
 }
 
 @Composable
-private fun Login(onAction: (LoginAction) -> Unit) {
+private fun Login(
+    onAction: (LoginAction) -> Unit,
+    onLoginClicked: () -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -401,7 +409,7 @@ private fun Login(onAction: (LoginAction) -> Unit) {
 
         TransferMeButton(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            onClick = {},
+            onClick = onLoginClicked,
             text = "Login"
         )
 
@@ -502,7 +510,8 @@ private fun Preview() {
             state = LoginState(
                 activeScreen = LoginScreens.PinCode
             ),
-            onAction = {}
+            onAction = {},
+            onLoginClicked = {}
         )
     }
 }
