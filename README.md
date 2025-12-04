@@ -36,7 +36,21 @@ Key files to inspect right away:
 
 ## Preview
 
-Below are the screenshots and design images included in the repository (from the images/ folder). The gallery below uses simple HTML that is compatible with GitHub's README rendering. Images are shown as thumbnails (width-limited) with captions.
+Below are the screenshots and design images included in the repository (from the images/ folder). The gallery groups login screens together and shows the rest of the screens in a separate section. Thumbnails are width-limited for consistent preview.
+
+### Login screens
+
+<table>
+  <tr>
+    <td align="center"><img src="images/login_1.jpg" alt="Login 1" width="220"><br><sub>Login — variant 1</sub></td>
+    <td align="center"><img src="images/login_2.jpg" alt="Login 2" width="220"><br><sub>Login — variant 2</sub></td>
+    <td align="center"><img src="images/login_3.jpg" alt="Login 3" width="220"><br><sub>Login — variant 3</sub></td>
+    <td align="center"><img src="images/login_4.jpg" alt="Login 4" width="220"><br><sub>Login — variant 4</sub></td>
+    <td align="center"><img src="images/login_5.jpg" alt="Login 5" width="220"><br><sub>Login — variant 5</sub></td>
+  </tr>
+</table>
+
+### Other screens
 
 <table>
   <tr>
@@ -47,19 +61,13 @@ Below are the screenshots and design images included in the repository (from the
   </tr>
   <tr>
     <td align="center"><img src="images/home.jpg" alt="Home" width="220"><br><sub>Home screen</sub></td>
-    <td align="center"><img src="images/login_1.jpg" alt="Login 1" width="220"><br><sub>Login — variant 1</sub></td>
-    <td align="center"><img src="images/login_2.jpg" alt="Login 2" width="220"><br><sub>Login — variant 2</sub></td>
-    <td align="center"><img src="images/login_3.jpg" alt="Login 3" width="220"><br><sub>Login — variant 3</sub></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="images/login_4.jpg" alt="Login 4" width="220"><br><sub>Login — variant 4</sub></td>
-    <td align="center"><img src="images/login_5.jpg" alt="Login 5" width="220"><br><sub>Login — variant 5</sub></td>
     <td align="center"><img src="images/profile.jpg" alt="Profile" width="220"><br><sub>Profile screen</sub></td>
     <td align="center"><img src="images/security_questions_1.jpg" alt="Security Questions 1" width="220"><br><sub>Security questions — step 1</sub></td>
+    <td align="center"><img src="images/security_questions_2.jpg" alt="Security Questions 2" width="220"><br><sub>Security questions — step 2</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="images/security_questions_2.jpg" alt="Security Questions 2" width="220"><br><sub>Security questions — step 2</sub></td>
     <td align="center"><img src="images/transfer.jpg" alt="Transfer" width="220"><br><sub>Transfer flow</sub></td>
+    <td></td>
     <td></td>
     <td></td>
   </tr>
